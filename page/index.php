@@ -1,43 +1,29 @@
-<?php include_once "../utils/Example.utils.php"; ?>
-
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Employee Attendance</title>
-    <link rel="stylesheet" href="./assets/css/example.css">
+    <title>Class Schedule</title>
+    <link rel="stylesheet" href="assets/css/example.css">
 </head>
 <body>
+    <h1>Weekly Class Schedule</h1>
 
-<h2>📋 Employee Attendance</h2>
+    <?php
+    $days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+    $i = 0;
 
-<table border="1" cellpadding="10">
-    <tr>
-        <th>Name</th>
-        <th>Status</th>
-        <th>Remarks</th>
-    </tr>
+    while ($i < count($days)) {
+        $day = $days[$i];
 
-<?php
-for ($i = 0; $i < count($employees); $i++) {
-    echo "<tr>";
-    echo "<td>" . $employees[$i] . "</td>";
-    echo "<td>" . $attendance[$i] . "</td>";
+        if ($day == "Saturday" || $day == "Sunday") {
+            echo "<div class='weekend'>$day - No Class</div>";
+        } else {
+            echo "<div class='weekday'>$day - Class Day</div>";
+        }
 
-    // Conditionals
-    if ($attendance[$i] == "Present") {
-        echo "<td style='color: green;'>✔ On Time</td>";
-    } else {
-        echo "<td style='color: red;'>❌ Absent</td>";
+        $i++;
     }
+    ?>
 
-    echo "</tr>";
-}
-?>
-
-</table>
-
-<br>
-<a href="summary.php">➡ View Summary</a>
-
+    <a href="../index.php" class="button">Back to Attendance</a>
 </body>
 </html>
